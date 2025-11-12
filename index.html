@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARDEN - AI-Driven Game Narrative Editor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+        .title-section {
+            flex-grow: 1;
+        }
+        h1 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .repo-links {
+            margin-top: 30px;
+        }
+        .repo-link {
+            display: block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .repo-link:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="./assets/arden-logo.png" alt="ARDEN Logo" class="logo">
+        <div class="title-section">
+            <h1>ARDEN</h1>
+            <div class="subtitle">AI-Driven Game Narrative Editor</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div>
+            <div class="section">
+                <h2>About ARDEN</h2>
+                <p>ARDEN (AI-Driven Game Narrative Editor) extends Microsoft's GENEVA research by implementing a native editor architecture for game narrative design. It provides a unified platform for game narrative development with AI assistance, persistent state management, and direct game engine integration.</p>
+                <p>This project is developed as a Computer Science Undergraduate Capstone Project at McMaster University.</p>
+            </div>
+
+            <div class="section">
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Unified Platform:</strong> Handles all stages of narrative development</li>
+                    <li><strong>AI-Assisted Graph Construction:</strong> Automates graph creation while maintaining human creative control</li>
+                    <li><strong>Persistent Conversational Context:</strong> Enables iterative refinement of narrative elements</li>
+                    <li><strong>Direct Game Engine Integration:</strong> Provides Unity integration through a custom Unity package</li>
+                    <li><strong>Narrative Coherence Management:</strong> Ensures consistency across complex narrative structures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <div class="section">
+                <h2>Technical Architecture</h2>
+                <ul>
+                    <li><strong>Frontend:</strong> React-based UI with resizable panel system and SVG-based graph rendering</li>
+                    <li><strong>Backend:</strong> Python application server with AI workflow orchestration and Node.js database service</li>
+                    <li><strong>Data Layer:</strong> PostgreSQL for user authentication, project storage, and relationship mapping</li>
+                    <li><strong>AI Pipeline:</strong> LangGraph workflow management with OpenAI GPT models and vector embeddings</li>
+                    <li><strong>Unity Integration:</strong> JSON export format with runtime parser for Unity compatibility</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Project Components</h2>
+                <div class="repo-links">
+                    <a href="https://github.com/ARDEN-MC/arden-studio-web" class="repo-link">ARDEN Studio Web</a>
+                    <a href="https://github.com/ARDEN-MC/arden-studio-api" class="repo-link">ARDEN Studio API</a>
+                    <a href="https://github.com/ARDEN-MC/arden-studio-data-service" class="repo-link">ARDEN Studio Data Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 ARDEN-MC | McMaster University Computer Science Undergraduate Capstone Project</p>
+    </div>
+</body>
+</html>
