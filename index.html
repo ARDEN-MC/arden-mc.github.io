@@ -5,149 +5,406 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARDEN - AI-Driven Game Narrative Editor</title>
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            color: #212529;
             background-color: #f8f9fa;
         }
+
+        /* ── Header ── */
         .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
+            background: linear-gradient(135deg, #1a1d23 0%, #2c3140 100%);
+            color: white;
+            padding: 48px 24px;
+            text-align: center;
+        }
+        .header-inner {
+            max-width: 860px;
+            margin: 0 auto;
         }
         .logo {
-            width: 80px;
-            height: 80px;
-            margin-right: 20px;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 16px;
+            filter: brightness(0) invert(1);
         }
-        .title-section {
-            flex-grow: 1;
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
-        h1 {
-            margin: 0;
-            color: #2c3e50;
+        .header .subtitle {
+            font-size: 1.15rem;
+            color: #adb5bd;
+            margin-top: 6px;
         }
-        .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-            margin-top: 5px;
-        }
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        .section {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 0;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        .repo-links {
-            margin-top: 30px;
-        }
-        .repo-link {
-            display: block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-        .repo-link:hover {
-            background-color: #2980b9;
-        }
-        .footer {
-            margin-top: 50px;
-            text-align: center;
-            color: #7f8c8d;
+        .header .team {
             font-size: 0.9rem;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-primary { background: #6f42c1; color: white; }
+        .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.35); }
+
+        /* ── Page body ── */
+        .page { max-width: 1000px; margin: 0 auto; padding: 48px 24px; }
+
+        /* ── Section headers ── */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1d23;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .section { margin-bottom: 52px; }
+
+        /* ── Quick start ── */
+        .quickstart-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .step {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .step-num {
+            width: 32px; height: 32px;
+            background: #6f42c1;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .step p { font-size: 0.9rem; color: #495057; }
+        .step strong { color: #212529; }
+
+        /* ── Demo video ── */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* ── Documents grid ── */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+        .doc-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+        .doc-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transform: translateY(-2px);
+        }
+        .doc-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .doc-title { font-weight: 600; font-size: 0.92rem; color: #212529; }
+        .doc-sub { font-size: 0.8rem; color: #6c757d; margin-top: 2px; }
+
+        /* ── Repos ── */
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .repo-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+        .repo-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transform: translateY(-2px);
+        }
+        .repo-name { font-weight: 700; font-size: 0.95rem; color: #6f42c1; margin-bottom: 6px; }
+        .repo-desc { font-size: 0.85rem; color: #495057; }
+        .repo-tag {
+            display: inline-block;
+            background: #f3f0ff;
+            color: #6f42c1;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        /* ── Features ── */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .feature-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .feature-card h3 { font-size: 0.95rem; font-weight: 700; color: #1a1d23; margin-bottom: 6px; }
+        .feature-card p { font-size: 0.85rem; color: #495057; }
+
+        /* ── Architecture ── */
+        .arch-box {
+            background: #1a1d23;
+            color: #ced4da;
+            border-radius: 8px;
+            padding: 24px 28px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        .arch-box .purple { color: #c792ea; }
+        .arch-box .green  { color: #c3e88d; }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            color: #adb5bd;
+            font-size: 0.82rem;
+            padding: 32px 24px 48px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+
+<!-- ── HEADER ── -->
+<div class="header">
+    <div class="header-inner">
         <img src="./assets/arden-logo.png" alt="ARDEN Logo" class="logo">
-        <div class="title-section">
-            <h1>ARDEN</h1>
-            <div class="subtitle">AI-Driven Game Narrative Editor</div>
+        <h1>ARDEN</h1>
+        <div class="subtitle">AI-Driven Game Narrative Editor</div>
+        <div class="team">McMaster University · COMPSCI 4ZP6 Capstone · Team 30</div>
+        <div class="team" style="margin-top:4px;">Cathy Xu &nbsp;·&nbsp; Duzhi Wu &nbsp;·&nbsp; Moein Roghani &nbsp;·&nbsp; Xingjian Zheng</div>
+        <div class="cta-group">
+            <a href="https://arden-dev.com" class="btn btn-primary">🚀 Open Live App</a>
+            <a href="https://youtu.be/L2KalKY0AOI" class="btn btn-outline" target="_blank">▶ Watch Demo</a>
+            <a href="https://github.com/ARDEN-MC" class="btn btn-outline" target="_blank">GitHub Org</a>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+
+    <!-- ── QUICK START ── -->
+    <div class="section">
+        <div class="section-title">Try the Application</div>
+        <div class="quickstart-steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <p>Go to <strong><a href="https://arden-dev.com">arden-dev.com</a></strong></p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <p>Click <strong>Get Started → Create Account</strong> and register</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <p>Save your credentials — log in anytime with them</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <p>Create a project and start chatting with the AI</p>
+            </div>
+        </div>
+        <p style="margin-top:16px; font-size:0.85rem; color:#6c757d;">
+            No local setup needed. The live site runs the full production stack: React · Python/FastAPI · Node.js · PostgreSQL on DigitalOcean.
+        </p>
+    </div>
+
+    <!-- ── DEMO VIDEO ── -->
+    <div class="section">
+        <div class="section-title">Demo Video</div>
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube.com/embed/L2KalKY0AOI"
+                title="ARDEN Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 
-    <div class="main-content">
-        <div>
-            <div class="section">
-                <h2>About ARDEN</h2>
-                <p>ARDEN (AI-Driven Game Narrative Editor) extends Microsoft's GENEVA research by implementing a native editor architecture for game narrative design. It provides a unified platform for game narrative development with AI assistance, persistent state management, and direct game engine integration.</p>
-                <p>This project is developed as a Computer Science Undergraduate Capstone Project at McMaster University.</p>
-            </div>
-
-            <div class="section">
-                <h2>Key Features</h2>
-                <ul>
-                    <li><strong>Unified Platform:</strong> Handles all stages of narrative development</li>
-                    <li><strong>AI-Assisted Graph Construction:</strong> Automates graph creation while maintaining human creative control</li>
-                    <li><strong>Persistent Conversational Context:</strong> Enables iterative refinement of narrative elements</li>
-                    <li><strong>Direct Game Engine Integration:</strong> Provides Unity integration through a custom Unity package</li>
-                    <li><strong>Narrative Coherence Management:</strong> Ensures consistency across complex narrative structures</li>
-                </ul>
-            </div>
-        </div>
-
-        <div>
-            <div class="section">
-                <h2>Technical Architecture</h2>
-                <ul>
-                    <li><strong>Frontend:</strong> React-based UI with resizable panel system and SVG-based graph rendering</li>
-                    <li><strong>Backend:</strong> Python application server with AI workflow orchestration and Node.js database service</li>
-                    <li><strong>Data Layer:</strong> PostgreSQL for user authentication, project storage, and relationship mapping</li>
-                    <li><strong>AI Pipeline:</strong> LangGraph workflow management with OpenAI GPT models and vector embeddings</li>
-                    <li><strong>Unity Integration:</strong> JSON export format with runtime parser for Unity compatibility</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>Project Components</h2>
-                <div class="repo-links">
-                    <a href="https://github.com/ARDEN-MC/arden-studio-web" class="repo-link">ARDEN Studio Web</a>
-                    <a href="https://github.com/ARDEN-MC/arden-studio-api" class="repo-link">ARDEN Studio API</a>
-                    <a href="https://github.com/ARDEN-MC/arden-studio-data-service" class="repo-link">ARDEN Studio Data Service</a>
+    <!-- ── DOCUMENTS ── -->
+    <div class="section">
+        <div class="section-title">Submission Documents</div>
+        <div class="doc-grid">
+            <a href="./docs/Group_30_SRS.pdf" class="doc-card" target="_blank">
+                <div class="doc-icon">📋</div>
+                <div>
+                    <div class="doc-title">Software Requirements Specification</div>
+                    <div class="doc-sub">SRS — Group 30</div>
                 </div>
+            </a>
+            <a href="./docs/Group_30_Design_VnV.pdf" class="doc-card" target="_blank">
+                <div class="doc-icon">🏗️</div>
+                <div>
+                    <div class="doc-title">Design & V&amp;V Document</div>
+                    <div class="doc-sub">Architecture, algorithms, verification</div>
+                </div>
+            </a>
+            <a href="./docs/Group_30_Reflection.pdf" class="doc-card" target="_blank">
+                <div class="doc-icon">📝</div>
+                <div>
+                    <div class="doc-title">Final Reflection</div>
+                    <div class="doc-sub">Achievements, learnings, P0/P1 completion</div>
+                </div>
+            </a>
+            <a href="./docs/ARDEN_Capstone_Poster.pdf" class="doc-card" target="_blank">
+                <div class="doc-icon">🖼️</div>
+                <div>
+                    <div class="doc-title">Capstone Poster</div>
+                    <div class="doc-sub">Project overview poster</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── REPOS ── -->
+    <div class="section">
+        <div class="section-title">Repositories</div>
+        <div class="repo-grid">
+            <a href="https://github.com/ARDEN-MC/arden-studio-web" class="repo-card" target="_blank">
+                <div class="repo-name">arden-studio-web</div>
+                <div class="repo-desc">Multi-panel React SPA — graph editor, AI chat, lore bible, storyline inspector</div>
+                <span class="repo-tag">React</span>
+            </a>
+            <a href="https://github.com/ARDEN-MC/arden-studio-api" class="repo-card" target="_blank">
+                <div class="repo-name">arden-studio-api</div>
+                <div class="repo-desc">Python/FastAPI backend — LangGraph multi-agent AI orchestration, session management, auth</div>
+                <span class="repo-tag">Python · LangGraph</span>
+            </a>
+            <a href="https://github.com/ARDEN-MC/arden-studio-data-service" class="repo-card" target="_blank">
+                <div class="repo-name">arden-studio-data-service</div>
+                <div class="repo-desc">Node.js/Express data service — PostgreSQL integration, Sequelize ORM, connection pooling</div>
+                <span class="repo-tag">Node.js · PostgreSQL</span>
+            </a>
+            <a href="https://github.com/ARDEN-MC/arden-unity" class="repo-card" target="_blank">
+                <div class="repo-name">arden-unity</div>
+                <div class="repo-desc">Unity plugin — runtime narrative engine, DAG state machine, variable store, editor tools</div>
+                <span class="repo-tag">C# · Unity</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── FEATURES ── -->
+    <div class="section">
+        <div class="section-title">Key Features</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Multi-Agent AI System</h3>
+                <p>Three independent LLM instances: a Supervisor (ReAct + memory) that delegates to a stateless Lore Bible Expert and Narrative Graph Expert, each with domain-specific tools and prompts.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Live Visual Graph Editor</h3>
+                <p>SVG-based DAG editor with a hand-rolled layered layout algorithm (no external graph libraries). Both the user and the AI can modify the same graph with full concurrency handling.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Tool-Augmented Generation</h3>
+                <p>Agents operate on structured JSON via three custom file tools. EditFileTool uses two-phase simulate-then-apply with automatic rollback and read-back verification on every write.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Lore Bible Management</h3>
+                <p>Persistent world-building data (characters, locations, organizations, events) managed by a dedicated expert agent and surfaced in the Lore Bible panel.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Unity Plugin</h3>
+                <p>Export narratives as JSON and play them in Unity. The NarrativeTool plugin provides a DAG state machine, variable store, condition evaluator, and live graph visualizer.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Full Production Deployment</h3>
+                <p>Four containerized services (Docker Compose) on a DigitalOcean Linux VM with SSL, authentication, session management, and Langfuse observability.</p>
             </div>
         </div>
     </div>
 
-    <div class="footer">
-        <p>© 2025 ARDEN-MC | McMaster University Computer Science Undergraduate Capstone Project</p>
+    <!-- ── ARCHITECTURE ── -->
+    <div class="section">
+        <div class="section-title">Architecture</div>
+        <div class="arch-box">
+<span class="purple">React SPA</span> (arden-dev.com / port 8080)
+    ↕  REST + SSE
+<span class="purple">Python / FastAPI API</span>
+    ├── <span class="green">Supervisor Agent</span>  (ReAct · MemorySaver · GPT · temp 1.0)
+    │       ↓ delegate_to_*
+    ├── <span class="green">Lore Bible Expert</span>  (precontex_agent_base · stateless)
+    └── <span class="green">Narrative Graph Expert</span>  (precontex_agent_base · stateless)
+              ↓ read_file / edit_file / write_file
+<span class="purple">Node.js / Express Data Service</span>
+    ↕  Sequelize ORM
+<span class="purple">PostgreSQL 17</span>  (users · projects · nodes · edges · lore)
+        </div>
     </div>
+
+</div>
+
+<div class="footer">
+    © 2026 ARDEN-MC &nbsp;·&nbsp; McMaster University Computer Science Undergraduate Capstone &nbsp;·&nbsp; Supervisor: Dr. Mehdi Moradi
+</div>
+
 </body>
 </html>
