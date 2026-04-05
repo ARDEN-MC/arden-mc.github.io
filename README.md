@@ -41,7 +41,7 @@ The application is **fully deployed and publicly accessible**. No local setup re
 | Software Requirements Specification (SRS) | [Group_30_SRS.pdf](./docs/Group_30_SRS.pdf) |
 | Design & Verification and Validation | [Group_30_Design_VnV.pdf](./docs/Group_30_Design_VnV.pdf) |
 | Final Reflection | [Group_30_Reflection.pdf](./docs/Group_30_Reflection.pdf) |
-| Capstone Poster | [ARDEN_Capstone_Poster.pdf](./docs/ARDEN_Capstone_Poster.pdf) |
+| Capstone Poster | [ARDEN_Capstone_Poster.png](./docs/ARDEN_Capstone_Poster.png) |
 
 ---
 
